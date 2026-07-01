@@ -9,6 +9,14 @@ telecommunications access: number provisioning, call routing, billing, and
 support — run by a qualified operator so a community keeps its own call
 records and numbering data.
 
+## Robotics premise
+
+All cloud-itonami verticals are designed on the premise that a **robot performs
+the physical domain work**. Here a field-installer robot performs antenna splicing and last-mile line deployment under an actor that proposes
+actions and an independent **Telecom Access Governor** that gates them. The governor never
+dispatches hardware itself; `:high`/`:safety-critical` actions require
+human sign-off.
+
 ## Core Contract
 
 ```text
