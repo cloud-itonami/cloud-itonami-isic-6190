@@ -142,14 +142,22 @@ provisioning/suppression proposal still always routes to a human.
 ## Run
 
 ```bash
-clojure -M:dev:run     # walk one clean dual-actuation lifecycle + five HARD-hold cases through the actor
-clojure -M:dev:test    # governor contract · phase invariants · store parity · registry conformance · facts coverage
-clojure -M:lint        # clj-kondo (errors fail; CI mirrors this)
+clojure -M:dev:run          # walk one clean dual-actuation lifecycle + five HARD-hold cases through the actor
+clojure -M:dev:render-html  # regenerate docs/samples/operator-console.html by actually running the actor
+clojure -M:dev:test         # governor contract · phase invariants · store parity · registry conformance · facts coverage
+clojure -M:lint             # clj-kondo (errors fail; CI mirrors this)
 ```
 
-A live sample of the operator console is rendered in
-[docs/samples/operator-console.html](docs/samples/operator-console.html)
--- pure-data HTML output of the kotoba-lang capability UI.
+A sample of the operator console is checked in at
+[docs/samples/operator-console.html](docs/samples/operator-console.html).
+It is **generated at build time** by `telecom.render-html`, which drives the
+real `telecom.operation` StateGraph -> `telecom.governor` -> `telecom.store`
+over a freshly seeded store and renders whatever that run produced: every line
+id, E.164 number, sequence number, disposition and hold reason on the page was
+read back out of the run. The scenario exercises all six of the governor's HARD
+checks, and `-main` *refuses to write the page* if the run produced zero
+`:governor-hold` facts, so the console cannot silently degrade into a page that
+shows no governor. It carries no timestamp, so regeneration is byte-identical.
 
 ## Robotics premise
 
