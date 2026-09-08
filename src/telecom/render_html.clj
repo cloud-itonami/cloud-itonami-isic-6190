@@ -71,7 +71,7 @@
 
   Usage: `clojure -M:dev:render-html [out-file]`
   (default `docs/samples/operator-console.html`)."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [jp-go-dds.skin]
             [langgraph.graph :as g]
             [telecom.facts :as facts]
@@ -254,7 +254,7 @@
 
 (defn- approver-key?
   [k]
-  (let [n (str/replace (str/lower-case (str k)) "_" "-")]
+  (let [n (str/replace (str/lower (str k)) "_" "-")]
     (or (contains? #{"approver" "approved-by" "approved-by-id" "approvedby"} n)
         (str/starts-with? n "approved-by"))))
 
