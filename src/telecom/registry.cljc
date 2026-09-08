@@ -32,7 +32,7 @@
   (that is `telecom.operation`'s `:actuation/provision-number`/
   `:actuation/suppress-billing-record`, always human-gated -- see
   README `Actuation`)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn- unsigned-certificate
   "Every certificate this actor produces is UNSIGNED -- signature is the
@@ -75,7 +75,7 @@
     (throw (ex-info "number-provisioning: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "number-provisioning: sequence must be >= 0" {})))
-  (let [provisioning-number (str (str/upper-case jurisdiction) "-PRV-" (zero-pad sequence 6))
+  (let [provisioning-number (str (str/upper jurisdiction) "-PRV-" (zero-pad sequence 6))
         record {"record_id" provisioning-number
                 "kind" "number-provisioning-draft"
                 "line_id" line-id
@@ -104,7 +104,7 @@
     (throw (ex-info "billing-suppression: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "billing-suppression: sequence must be >= 0" {})))
-  (let [suppression-number (str (str/upper-case jurisdiction) "-SUP-" (zero-pad sequence 6))
+  (let [suppression-number (str (str/upper jurisdiction) "-SUP-" (zero-pad sequence 6))
         record {"record_id" suppression-number
                 "kind" "billing-suppression-draft"
                 "line_id" line-id

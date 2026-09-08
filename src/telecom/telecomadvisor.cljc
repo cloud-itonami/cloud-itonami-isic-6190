@@ -28,7 +28,7 @@
      :confidence 0..1}"
   (:require #?(:clj  [clojure.edn :as edn]
                :cljs [cljs.reader :as edn])
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [telecom.facts :as facts]
             [telecom.registry :as registry]
             [telecom.store :as store]
