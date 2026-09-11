@@ -205,14 +205,14 @@ the real capability in as its number-management/CDR backend.
 
 | File | Role |
 |---|---|
-| `src/telecom/store.cljc` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + separate number-provisioning/billing-suppression history. No dynamically-filed sub-record -- both actuation ops act directly on a pre-seeded line, and the double-actuation guards check dedicated `:number-provisioned?`/`:billing-record-suppressed?` booleans rather than a `:status` value |
-| `src/telecom/registry.cljc` | Number-provisioning + billing-suppression draft records, plus `e164-invalid-format?` -- the FIRST instance of this fleet's format/syntactic-validity check family (grep-verified absent from every prior sibling's `governor.cljc` before this docstring was written) |
-| `src/telecom/facts.cljc` | Per-jurisdiction telecommunications-numbering-plan catalog with an official spec-basis citation per entry, honest coverage reporting |
-| `src/telecom/telecomadvisor.cljc` | **Telecom Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/verification/billing-dispute-screening/number-provisioning/billing-suppression proposals |
-| `src/telecom/governor.cljc` | **Telecom Access Governor** -- 4 HARD checks (spec-basis · evidence-incomplete · E.164-format-invalid, pure ground-truth structural recompute · billing-dispute-unresolved, unconditional evaluation, the TWENTY-SIXTH grounding of this discipline and FIRST specifically for the billing-dispute concept) + already-provisioned/already-suppressed guards + 1 soft (confidence/actuation gate) |
-| `src/telecom/phase.cljc` | **Phase 0→3** -- read-only → assisted intake → assisted verify → supervised (both number provisioning and billing-record suppression always human; line intake is the ONLY auto-eligible op, no direct capital risk) |
-| `src/telecom/operation.cljc` | **OperationActor** -- langgraph-clj StateGraph |
-| `src/telecom/sim.cljc` | demo driver |
+| `src/telecom/store.cljk` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + separate number-provisioning/billing-suppression history. No dynamically-filed sub-record -- both actuation ops act directly on a pre-seeded line, and the double-actuation guards check dedicated `:number-provisioned?`/`:billing-record-suppressed?` booleans rather than a `:status` value |
+| `src/telecom/registry.cljk` | Number-provisioning + billing-suppression draft records, plus `e164-invalid-format?` -- the FIRST instance of this fleet's format/syntactic-validity check family (grep-verified absent from every prior sibling's `governor.cljc` before this docstring was written) |
+| `src/telecom/facts.cljk` | Per-jurisdiction telecommunications-numbering-plan catalog with an official spec-basis citation per entry, honest coverage reporting |
+| `src/telecom/telecomadvisor.cljk` | **Telecom Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/verification/billing-dispute-screening/number-provisioning/billing-suppression proposals |
+| `src/telecom/governor.cljk` | **Telecom Access Governor** -- 4 HARD checks (spec-basis · evidence-incomplete · E.164-format-invalid, pure ground-truth structural recompute · billing-dispute-unresolved, unconditional evaluation, the TWENTY-SIXTH grounding of this discipline and FIRST specifically for the billing-dispute concept) + already-provisioned/already-suppressed guards + 1 soft (confidence/actuation gate) |
+| `src/telecom/phase.cljk` | **Phase 0→3** -- read-only → assisted intake → assisted verify → supervised (both number provisioning and billing-record suppression always human; line intake is the ONLY auto-eligible op, no direct capital risk) |
+| `src/telecom/operation.cljk` | **OperationActor** -- langgraph-clj StateGraph |
+| `src/telecom/sim.cljk` | demo driver |
 | `test/telecom/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage |
 
 ## Business-process coverage (honest)
