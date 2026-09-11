@@ -10,8 +10,8 @@ business blueprint and operator contracts.
 
 ```bash
 # in kotoba-lang/phone:
-clojure -X:test
-clojure -M:lint
+kbb -X:test
+kbb -M:lint
 ```
 
 Keep changes small and include tests for E.164 validation, SIP parsing, or

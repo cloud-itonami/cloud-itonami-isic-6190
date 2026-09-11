@@ -2466,7 +2466,7 @@ img,svg { max-width: 100%; height: auto; }</style></head><body>
   <h1>Telecommunications &mdash; wired, wireless &amp; satellite (ISIC 6190) &mdash; Operator Console</h1>
 </header>
 <p><span class="badge">read-only sample</span> <span class="badge">governor-gated</span> <span class="badge">number provisioning &amp; billing suppression always human-approved</span></p>
-<p class="subtitle">Generated at build time by <code>telecom.render-html</code> (<code>clojure -M:dev:render-html</code>) by actually running the compiled <code>telecom.operation</code> StateGraph over a freshly seeded store. Every value below was read back out of that run &mdash; there is no mock markup on this page, and no timestamp, so successive regenerations are byte-identical.</p>
+<p class="subtitle">Generated at build time by <code>telecom.render-html</code> (<code>kbb -M:dev:render-html</code>) by actually running the compiled <code>telecom.operation</code> StateGraph over a freshly seeded store. Every value below was read back out of that run &mdash; there is no mock markup on this page, and no timestamp, so successive regenerations are byte-identical.</p>
 <main>
   <section class="card">
     <h2>Run summary</h2>
@@ -2676,6 +2676,6 @@ img,svg { max-width: 100%; height: auto; }</style></head><body>
   switch, HLR, number-portability database or billing system. It builds the RECORD an operator
   would keep. Committing one means a draft was logged, never that a number went live or a
   customer's billing record was silenced.</p>
-  <p>Regenerate: <code>clojure -M:dev:render-html</code></p>
+  <p>Regenerate: <code>kbb -M:dev:render-html</code></p>
 </footer>
 </body></html>

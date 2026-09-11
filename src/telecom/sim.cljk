@@ -1,5 +1,5 @@
 (ns telecom.sim
-  "Demo driver -- `clojure -M:dev:run`. Walks a clean line through
+  "Demo driver -- `kbb -M:dev:run`. Walks a clean line through
   intake -> identity verification -> billing-dispute screening ->
   number-provisioning proposal (always escalates) -> human approval ->
   commit, then through billing-suppression proposal (always
