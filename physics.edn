@@ -1,0 +1,35 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:dev:physics` runs it.
+;;
+;; README "Robotics premise": for other telecommunications activities
+;; (ISIC 6190: VoIP, internet access, reselling) a field-installer robot
+;; performs antenna splicing and last-mile line deployment at network
+;; sites, gated by the independent Telecom Access Governor. Physical work
+;; modelled here: the installer arm lifting a fibre splice closure up to
+;; its pole bracket, and the tensile check of the steel messenger strand
+;; that carries an aerial drop cable, over the strand sizes the installer
+;; may be handed.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isic-6190"
+ :cases
+ [{:id :splice-closure-to-pole
+   :kind :manipulator
+   :procedure "installer arm lifts a fibre splice closure from the van deck and offers it up to the bracket on the pole"
+   :params {:l1-m 0.80 :l2-m 0.70 :m1-kg 9.0 :m2-kg 6.0
+            :from [0.90 -0.20] :to [0.40 1.20] :duration-s 2.5 :steps 500}
+   :sweep {:param :payload-kg :values [2.0 4.0 6.0 8.0 12.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 200.0 :basis "estimate: continuous shoulder torque of a ~10 kg-payload collaborative arm class"}
+   :boundary {:lo 0.5 :hi 50.0}}
+  {:id :drop-cable-messenger-strand
+   :kind :material
+   :procedure "tensile check of the galvanised steel messenger strand of an aerial fibre drop cable, over the strand cross-sections in the installer's stock"
+   :params {:length-m 0.10 :youngs-modulus-pa 190.0e9 :yield-stress-pa 1000.0e6 :hardening-pa 2.0e9
+            :density-kg-m3 7850.0 :max-force-n 3800.0}
+   :sweep {:param :area-m2 :values [1.0e-6 1.5e-6 2.0e-6 2.5e-6 3.0e-6]}
+   :quantity :yield-force-n
+   :limit {:min 1800.0 :basis "estimate: design span tension of a drop under ice and wind with margin, before the cable datasheet's rated tensile load is sourced"}
+   :boundary {:lo 0.8e-6 :hi 3.0e-6}}]}
