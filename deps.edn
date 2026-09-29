@@ -6,7 +6,7 @@
  ;; inside the monorepo checkout — a standalone fork should override them
  ;; with git coordinates.
  ;; `jp-go-digital-design-system` (DADS) is this workspace's BASE design
- ;; system (root CLAUDE.md "UI/UX 標準"). `telecom.render-html` inlines
+ ;; system (root AGENTS.md "UI/UX 標準"). `telecom.render-html` inlines
  ;; `jp-go-dds.skin/dds+skin` into the generated operator console so the
  ;; page has no external stylesheet fetch. Consumed as a :git/sha (NOT a
  ;; :local/root) so the render-html build also resolves in a standalone
